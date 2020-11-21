@@ -42,7 +42,7 @@ source("src/my_ggplot_themes.R")
 
 ### Processing step
 #### Process guide matrices
-```{r "process guide matrices}
+```{r "process guide matrices"}
 # load guide matrices from perturbseq and clean the files
 pre_gmatrix_perturbseq = list.files("data/in_vitro_benchmark/perturbseq", full.names = T, recursive = T, pattern = "guide_matrix") %>%
   map_df(function(path) {
@@ -119,7 +119,7 @@ saveRDS(gmatrix, "output/in_vitro_benchmark/meta/guide_matrices.rds")
 ```
 
 #### Build design matrices and define contrasts
-```{r "build design matrices and define contrasts}
+```{r "build design matrices and define contrasts"}
 # build design matrix
 gmatrix = readRDS("output/in_vitro_benchmark/meta/guide_matrices.rds") 
 
@@ -172,7 +172,7 @@ saveRDS(contrast_df, "output/in_vitro_benchmark/meta/contrasts.rds")
 ```
 
 #### Process count matrices
-```{r "process count matrices}
+```{r "process count matrices"}
 gmatrix = readRDS("output/in_vitro_benchmark/meta/guide_matrices.rds")
 perturbseq = list.files(
   "data/in_vitro_benchmark/perturbseq", full.names = T, recursive = T, 
@@ -261,7 +261,7 @@ saveRDS(norm_expr, "output/in_vitro_benchmark/expr/norm_expr.rds")
 ```
 
 #### Differential gene expression analysis
-```{r "differential gene expression analysis}
+```{r "differential gene expression analysis"}
 expr = readRDS("output/in_vitro_benchmark/expr/norm_expr.rds") %>%
   mutate(day = as.numeric(day))
 c = readRDS("output/in_vitro_benchmark/meta/contrasts.rds") %>%
@@ -631,7 +631,7 @@ saveRDS(scenic_contrasts, "output/in_vitro_benchmark/ss_analysis/scenic_contrast
 
 
 #### D-AUCell on single samples
-```{r "performance evaluation of d-aucell"}
+```{r performance-evaluation-of-d-aucell}
 bad_experiments = readRDS("output/in_vitro_benchmark/expr/bad_experiments.rds")
 aucell_result = readRDS("output/in_vitro_benchmark/ss_analysis/aucell_dorothea_contrast.rds") %>%
   unnest(aucell_contrast) %>%
@@ -881,7 +881,7 @@ saveRDS(pr_coords, "output/in_vitro_benchmark/ss_analysis/aucell_pr_coords_sub.r
 
 
 #### SCENIC on single samples
-```{r "performance evaluation of scenic"}
+```{r performance-evaluation-of-scenic}
 bad_experiments = readRDS("output/in_vitro_benchmark/expr/bad_experiments.rds")
 scenic_result = readRDS("output/in_vitro_benchmark/ss_analysis/scenic_contrast.rds") %>%
   unnest(scenic_contrast) %>%
@@ -1102,7 +1102,7 @@ saveRDS(pr_coords, "output/in_vitro_benchmark/ss_analysis/aucell_pr_coords_sub.r
 
 
 #### VIPER on single samples
-```{r "performance evaluation of viper"}
+```{r performance-evaluation-of-viper}
 bad_experiments = readRDS("output/in_vitro_benchmark/expr/bad_experiments.rds")
 ss_viper_result = readRDS("output/in_vitro_benchmark/ss_analysis/ss_viper_contrast.rds") %>%
   unnest(ss_viper_contrast) %>%
@@ -1352,7 +1352,7 @@ saveRDS(pr_coords, "output/in_vitro_benchmark/ss_analysis/ss_viper_pr_coords_sub
 ```
 
 #### metaVIPER on single samples
-```{r "performance evaluation of metaviper"}
+```{r performance-evaluation-of-metaviper}
 bad_experiments = readRDS("output/in_vitro_benchmark/expr/bad_experiments.rds")
 ss_metaviper_result = readRDS("output/in_vitro_benchmark/ss_analysis/ss_metaviper_contrast.rds") %>%
   unnest(ss_metaviper_contrast) %>%
@@ -1679,7 +1679,7 @@ y = purrr::reduce(list(scenic, target_tfs, metaviper, dorothea), inner_join, by=
 ```
 
 #### Run VIPER
-```{r "run viper"}
+```{r "run viper2"}
 
 common_tfs = readRDS("output/in_vitro_benchmark/meta/common_tfs_perttarget_scenic_dorothea_gtex.rds")
 # subset dorothea
@@ -1926,7 +1926,7 @@ saveRDS(scenic_contrasts, "output/in_vitro_benchmark/ss_analysis/scenic_contrast
 ### Performance evaluation with focus on common tfs
 
 #### AUCell on single samples
-```{r "performance evaluation"}
+```{r performance-evaluation-focus-common-tfs}
 bad_experiments = readRDS("output/in_vitro_benchmark/expr/bad_experiments.rds")
 aucell_result = readRDS("output/in_vitro_benchmark/ss_analysis/aucell_dorothea_contrast_sub.rds") %>%
   unnest(aucell_contrast) %>%
@@ -2153,7 +2153,7 @@ saveRDS(performance_result, "output/in_vitro_benchmark/ss_analysis/aucell_perfor
 
 
 #### SCENIC on single samples
-```{r "performance evaluation"}
+```{r performance-evaluation-scenic}
 bad_experiments = readRDS("output/in_vitro_benchmark/expr/bad_experiments.rds")
 scenic_result = readRDS("output/in_vitro_benchmark/ss_analysis/scenic_contrast_sub.rds") %>%
   unnest(scenic_contrast) %>%
@@ -2601,7 +2601,7 @@ saveRDS(pr_coords, "output/in_vitro_benchmark/ss_analysis/ss_viper_pr_coords_sub
 ```
 
 #### metaVIPER on single samples
-```{r "performance evaluation"}
+```{r performance-evaluation}
 bad_experiments = readRDS("output/in_vitro_benchmark/expr/bad_experiments.rds")
 ss_metaviper_result = readRDS("output/in_vitro_benchmark/ss_analysis/ss_metaviper_contrast_sub.rds") %>%
   unnest(ss_metaviper_contrast) %>%
